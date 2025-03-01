@@ -1,0 +1,125 @@
+/* General Styles */
+body {
+    background-color: rgb(166, 64, 85);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* Buttons */
+.welcome-btn, .decor-btn {
+    width: 180px;
+    height: 50px;
+    font-size: medium;
+    font-weight: 700;
+    color: black;
+    background-color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.welcome-btn:hover, .decor-btn:hover {
+    transform: scale(1.1);
+    background-color: beige;
+}
+
+/* 3D Flip Card */
+.card-container {
+    perspective: 1000px;
+    display: none;
+}
+
+.card {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card .front, .card .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card .front {
+    background: white;
+    color: black;
+}
+
+.card .back {
+    background: rgb(255, 228, 196);
+    color: black;
+    transform: rotateY(180deg);
+    flex-direction: column;
+}
+
+/* Balloon Animation */
+.balloon-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: none;
+}
+
+.balloon {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background-color: red;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: floatBalloon 8s ease-in infinite;
+    box-shadow: inset -5px -5px rgba(0, 0, 0, 0.2);
+}
+
+.balloon::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 2px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.3);
+    transform: translateX(-50%);
+}
+
+@keyframes floatBalloon {
+    0% {
+        transform: translateY(100vh) translateX(-50%) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(-50%) scale(1.2);
+        opacity: 0;
+    }
+}
